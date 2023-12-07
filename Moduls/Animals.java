@@ -10,6 +10,11 @@ public class Animals {
     public Animals() {
     }
 
+    /**
+     * Выводит в консоль всех животных, которые есть в базе данных.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void getAllAnimals() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         ConnectionDB connectionDb = new ConnectionDB();
@@ -22,6 +27,12 @@ public class Animals {
         connectionDb.connectionClose(connect, statement, resaltSet);
     }
 
+    /**
+     * Считает кол-во всех животных, которые есть в базе данных.
+     * @return кол-во животных.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public String countAnimals() throws ClassNotFoundException, SQLException {
         String result = "";
         Class.forName("com.mysql.cj.jdbc.Driver");
