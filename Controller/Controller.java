@@ -11,6 +11,11 @@ public class Controller {
     public Controller() {
     }
 
+    /**
+     * Проверяет на корректность введенное пользователем имя.
+     * @param name введенное пользователем имя
+     * @return имя - если все корректно или замечание (что не правильно)
+     */
     public String checkName(String name){
         String tmpName = name.trim();
         List<String> tmpList = new ArrayList<>(List.of(name.split(" ")));
@@ -36,6 +41,11 @@ public class Controller {
         return tmpName.substring(0, 1).toUpperCase() + tmpName.substring(1);
     }
 
+    /**
+     * Проверяет на корректность введенную пользователем дату рождения.
+     * @param birthDay введенное пользователем дата рождения
+     * @return дату рождения - если все корректно или замечание (что не правильно)
+     */
     public String checkBirthDay(String birthDay){
         int tmp = 0;
         String tmpDateIn = birthDay.replaceAll("\\s+", "");
@@ -102,6 +112,11 @@ public class Controller {
         return tmpDateIn;
     }
 
+    /**
+     * Проверяет на корректность введенную пользователем команду.
+     * @param comm введенная пользователем команда
+     * @return Команду с заглавной буквой - если все корректно, или замечание (что не правильно)
+     */
     public String checkCommand(String comm){
         String tmpComm = comm.trim();
         List<String> tmpList = new ArrayList<>(List.of(comm.split(" ")));
@@ -127,6 +142,11 @@ public class Controller {
         return tmpComm.substring(0, 1).toUpperCase() + tmpComm.substring(1);
     }
 
+    /**
+     * Проверяет введенную пользователем команду на дубликаты
+     * @param comm введенная пользователем команда
+     * @return строку команд через запятую или замечание (что не правильно)
+     */
     public String checkDoubleComm(List<String> comm) {
         String result = "";
         List<String> res = new ArrayList<>();

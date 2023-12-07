@@ -10,6 +10,11 @@ import java.util.Scanner;
 
 public class View {
 
+    /**
+     * Запуск программы.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void start() throws SQLException, ClassNotFoundException {
         Animals animals = new Animals();
         Pets pets = new Pets();
@@ -157,6 +162,10 @@ public class View {
 
     }
 
+    /**
+     * Главное меню.
+     * @return номер из того, что выбрал пользоваьтель
+     */
     public int titleStart() {
         int result = -1;
         Scanner scanner = new Scanner(System.in);
@@ -192,6 +201,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Меню добавления нового домашнего животного.
+     * @return номер из того, что выбрал пользоваьтель
+     */
     private int cheisAddPets() {
         int result = -1;
         Scanner scanner = new Scanner(System.in);
@@ -228,6 +241,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Меню добавления нового вьючного животного.
+     * @return номер из того, что выбрал пользоваьтель
+     */
     private int cheisAddPack() {
         int result = -1;
         Scanner scanner = new Scanner(System.in);
@@ -264,6 +281,10 @@ public class View {
         return result;
     }
 
+    /**
+     * меню действий с домашними и вьючными животными
+     * @return номер из того, что выбрал пользоваьтель
+     */
     private int petsAndPackStart() {
         int result = 0;
         Scanner scanner = new Scanner(System.in);
@@ -299,6 +320,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Вспомогалеотный метод для добавления нового животного в базу.
+     * @return список новых данных.
+     */
     public List<String> addNewPetsAndPack() {
         List<String> result = new ArrayList<>();
         boolean flag = true;
@@ -327,6 +352,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Меню ввода нового имени
+     * @return новое имя - если все корректно или замечание - если что то не правильно.
+     */
     private String addNewName(){
         Scanner scanner = new Scanner(System.in);
         Controller controller = new Controller();
@@ -350,6 +379,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Меню ввода новой даты рождения
+     * @return дату рождения - если все корректно или замечание - если что то не правильно.
+     */
     private String addNewDate(){
         Scanner scanner = new Scanner(System.in);
         Controller controller = new Controller();
@@ -373,6 +406,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Меню ввода новой команды
+     * @return новая команда - если все корректно или замечание - если что то не правильно.
+     */
     private String addNewComm(){
         List<String> newCommList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -399,6 +436,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Меню ввода id домашнего животного
+     * @return id домашнего животного - если все корректно или замечание - если что то не правильно.
+     */
     private int getIdPets() throws SQLException, ClassNotFoundException {
         Pets pets = new Pets();
         pets.getAllPets();
@@ -433,6 +474,10 @@ public class View {
         return result;
     }
 
+    /**
+     * Меню ввода id вьючного животного
+     * @return result вьючного животного - если все корректно или замечание - если что то не правильно.
+     */
     private int getIdPack() throws SQLException, ClassNotFoundException {
         PackAnimals packAnimals = new PackAnimals();
         packAnimals.getAllPack();

@@ -25,6 +25,11 @@ public class Pets extends Animals implements IControllers {
         this.commands = commands;
     }
 
+    /**
+     * Выводит в консоль всех питомцев, которые живет дома.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void getAllPets() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         ConnectionDB connectionDb = new ConnectionDB();
@@ -37,6 +42,11 @@ public class Pets extends Animals implements IControllers {
         connectionDb.connectionClose(connect, statement, resaltSet);
     }
 
+    /**
+     * Выводит в консоль всех питомцев данного типа, которые живут дома. Метод нужно вызыват у потомков.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     @Override
     public void getAll() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -50,6 +60,11 @@ public class Pets extends Animals implements IControllers {
         connectionDb.connectionClose(connect, statement, resaltSet);
     }
 
+    /**
+     * Добавляем нового домашнего питомца.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void setNew() throws SQLException, ClassNotFoundException {
         if (this.checkDuble() != 0) {
@@ -68,6 +83,10 @@ public class Pets extends Animals implements IControllers {
 
     }
 
+    /**
+     * Вспомогательный метод выведет в консоль те команды, которые не знает данное животное. Метод вызывается у потомка.
+     * @param com строка с командами, через зхапятую
+     */
     private void checkListCommand(String com){
         List<String> commSet = Arrays.asList(com.split(","));
         List<String> tmp = new ArrayList<>(this.samCommand);
@@ -89,6 +108,12 @@ public class Pets extends Animals implements IControllers {
         }
     }
 
+    /**
+     * Вспомогательный метод предотвращает внесение одного и того же животного в базу.
+     * @return 1 если нет дублей, 0 если есть.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     private int checkDuble() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         ConnectionDB connectionDb = new ConnectionDB();
@@ -104,6 +129,13 @@ public class Pets extends Animals implements IControllers {
         }
     }
 
+    /**
+     * Вспомогательный метод для получения команд, которые знает животное.
+     * @param number id животного
+     * @return список команд (строки)
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     private List<String> getCommand(int number) throws ClassNotFoundException, SQLException {
         List<String> comm = new ArrayList<>();
         List<String> tmp;
@@ -121,6 +153,14 @@ public class Pets extends Animals implements IControllers {
         return comm;
     }
 
+    /**
+     * Вспомогательный метод проверяет на дубликаты новые команды.
+     * @param newCommand новая команда
+     * @param idDog id животного
+     * @return 0 если такую команду уже знает животное, 1 если нет.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     private int checkCommand(String newCommand, int idDog) throws SQLException, ClassNotFoundException {
         List<String> comm = new ArrayList<>(this.getCommand(idDog));
         int tmp = 0;
@@ -137,6 +177,13 @@ public class Pets extends Animals implements IControllers {
         }
     }
 
+    /**
+     * Метод добавления новой команды животному
+     * @param newCommand новая команда
+     * @param id id животного
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void setNewCommand(String newCommand, int id) throws SQLException, ClassNotFoundException {
         if (this.checkCommand(newCommand, id) != 0) {
@@ -158,6 +205,14 @@ public class Pets extends Animals implements IControllers {
             System.out.println("Зверюга это уже умеет!");
         }
     }
+
+    /**
+     * Метод проверяет, есть ли такой id в базе
+     * @param id id животного
+     * @return true если такое животное есть в базе и false - если нет.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     @Override
     public boolean getAnimId(int id) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -173,6 +228,12 @@ public class Pets extends Animals implements IControllers {
             return false;
         }
     }
+
+    /**
+     * Выводит в консоль всех домашних питомцев, начиная с самого младшего.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     @Override
     public void getAllOrderBy() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
